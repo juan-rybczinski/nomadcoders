@@ -1,8 +1,6 @@
 .user-component {
   display: flex;
-}
-
-.user-component {
+  margin-bottom: 10px;
   justify-content: space-between;
 }
 
