@@ -25,7 +25,7 @@
 .user-component__subtitle {
   margin-top: 8px;
   font-size: 17px;
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--main-color);
 }
 
 .user-component__avatar--xl {
@@ -44,7 +44,7 @@
 }
 
 .user-component__column:last-child {
-  color: rgba(0, 0, 0, 0.4);
+  color: var(--main-color);
   display: flex;
   flex-direction: column;
   align-items: flex-end;
