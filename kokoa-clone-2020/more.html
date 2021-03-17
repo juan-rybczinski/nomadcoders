@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Find - Kokoa Clone</title>
+    <title>More - Kokoa Clone</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
@@ -24,9 +24,10 @@
     </div>
 
     <header class="screen-header">
-      <h1 class="screen-header__title">Find</h1>
+      <h1 class="screen-header__title">More</h1>
       <div class="screen-header__icons">
         <span><i class="fas fa-search fa-lg"></i></span>
+        <span><i class="fas fa-music fa-lg"></i></span>
         <span id="screen-header__cog">
           <i class="fas fa-cog fa-lg">
             <div class="screen-header__update"></div>
@@ -35,51 +36,47 @@
       </div>
     </header>
 
-    <main class="main-screen">
+    <main class="main-screen more-screen">
+      <div class="user-component">
+        <div class="user-component__column">
+          <img
+            src="img/juan.png"
+            class="user-component__avatar user-component__avatar--xl"
+          />
+          <div class="user-component__text">
+            <h4 class="user-component__title">Rybczinski</h4>
+            <h6 class="user-component__subtitle">
+              010 2570 0836
+              <span>!</span>
+            </h6>
+          </div>
+        </div>
+        <div class="user-component__column">
+          <i class="far fa-comment-alt fa-2x"></i>
+        </div>
+      </div>
       <div class="icon-row">
         <div class="icon-row__icon">
-          <i class="fas fa-qrcode"></i><span>QR Code</span>
+          <i class="far fa-calendar"></i><span>Calendar</span>
         </div>
         <div class="icon-row__icon">
-          <i class="far fa-address-book"></i><span>Add by Contacts</span>
+          <i class="far fa-smile-beam"></i><span>Emoticons</span>
         </div>
         <div class="icon-row__icon">
-          <i class="fas fa-fingerprint"></i><span>Add by ID</span>
+          <i class="fas fa-paint-roller"></i><span>Themes</span>
         </div>
         <div class="icon-row__icon">
-          <i class="far fa-envelope"></i><span>Invite</span>
+          <i class="fas fa-file-invoice-dollar"></i><span>Account</span>
         </div>
       </div>
-      <div class="recommended-friends">
-        <h6 class="recommended-friends__title">Recommended Friends</h6>
-        <span>You have no recommendded friends</span>
-      </div>
-      <div class="open-chat">
-        <div class="open-chat__header">
-          <h4>Open Chat</h4>
-          <span
-            >Go to Openchat Home<i class="fas fa-chevron-right fa-xs"></i
-          ></span>
-        </div>
-        <div class="open-post">
-          <div class="open-post__column">
-            <h5 class="open-post__title">#BTS</h5>
-            <h6 class="open-post__hashtags">#bts#army#friends</h6>
-            <div class="open-post__members">
-              <img src="img/juan.png" />
-              <span class="open-post__members-count">802 members</span>
-              <div class="divider"></div>
-              <span class="open-post__members-status">Active</span>
+      <div class="more-suggestions">
+        <h4 class="more-suggestions__title">Suggestions</h4>
+        <div class="more-suggestions__icons">
+          <div class="more-suggestions__icon">
+            <div class="more-suggestions__icon-image">
+              <i class="fas fa-quote-right"></i>
             </div>
-          </div>
-          <div class="open-post__column">
-            <div class="open-post__photo">
-              <img src="img/juan.png" />
-              <div class="open-post__heart-count">
-                <i class="fas fa-heart fa-xs"></i>
-                <span>326</span>
-              </div>
-            </div>
+            <span class="more-suggestions__icon-text">Kokoa Story</span>
           </div>
         </div>
       </div>
