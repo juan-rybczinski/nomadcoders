@@ -53,9 +53,7 @@ function handleSubmitTodos(event) {
 function loadTodos() {
   const loadTodos = localStorage.getItem(TODO_LS);
   if (loadTodos !== null) {
-    console.log(loadTodos);
     const parsedTodos = JSON.parse(loadTodos);
-    console.log(parsedTodos);
     parsedTodos.forEach(function (todoObject) {
       paintTodos(todoObject.todo);
     });
