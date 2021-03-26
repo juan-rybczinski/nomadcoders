@@ -4,10 +4,21 @@ const todoForm = document.querySelector(".js-todo-form"),
 
 const TODO_LS = "todos";
 
-const todos = [];
+let todos = [];
 
 function saveTodos(params) {
   localStorage.setItem(TODO_LS, JSON.stringify(todos));
+}
+
+function deleteTodo(event) {
+  const btn = event.target;
+  const li = btn.parentNode;
+  todoList.removeChild(li);
+  const cleanTodos = todos.filter(function (todoObject) {
+    return todoObject.id !== parseInt(li.id);
+  });
+  todos = cleanTodos;
+  saveTodos();
 }
 
 function paintTodos(text) {
@@ -18,6 +29,7 @@ function paintTodos(text) {
 
   span.innerText = text;
   button.innerText = "❌";
+  button.addEventListener("click", deleteTodo);
   li.id = newId;
   li.appendChild(button);
   li.appendChild(span);
