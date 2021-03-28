@@ -232,4 +232,6 @@ Thumbs.db #thumbnail cache on Windows
 !.vscode/extensions.json
 *.code-workspace
 
+uploads/
+
 # End of https://www.toptal.com/developers/gitignore/api/python,vscode,django
