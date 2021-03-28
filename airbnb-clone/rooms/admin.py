@@ -133,6 +133,10 @@ class RoomAdmin(admin.ModelAdmin):
 
     count_amenities.short_description = "AMENITIES"
 
+    # def save_model(self, request, obj, form, change):
+    #     print(request, obj, change)
+    #     super().save_model(request, obj, form, change)
+
 
 @admin.register(models.Photo)
 class PhotoAdmin(admin.ModelAdmin):
