@@ -5,5 +5,7 @@
     "python.linting.enabled": true,
     "python.formatting.provider": "black",
     "python.linting.flake8Args": ["--max-line-length=88"],
-    "emmet.includeLanguages": {"django-html": "html"},
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
 }

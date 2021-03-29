@@ -3,7 +3,7 @@ from . import models
 
 
 def all_rooms(request):
-    all_rooms = models.RoomType.objects.all()
+    all_rooms = models.Room.objects.all()
     return render(
         request,
         "rooms/home.html",
