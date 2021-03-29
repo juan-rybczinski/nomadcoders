@@ -37,13 +37,28 @@ class Command(BaseCommand):
         )
         created_rooms = seeder.execute()
         created_clean = flatten(created_rooms.values())
+        amenities = room_models.Amenity.objects.all()
+        facilities = room_models.Facility.objects.all()
+        rules = room_models.HouseRule.objects.all()
         for pk in created_clean:
             room = room_models.Room.objects.get(pk=pk)
-            for i in range(3, random.randint(10, 17)):
+            for i in range(3, random.randint(10, 30)):
                 room_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     file=f"room_photos/{random.randint(1, 31)}.webp",
                     room=room,
                 )
+            for amenity in amenities:
+                magin_number = random.randint(0, 15)
+                if magin_number % 2 == 0:
+                    room.amenities.add(amenity)
+            for facility in facilities:
+                magin_number = random.randint(0, 15)
+                if magin_number % 2 == 0:
+                    room.facilities.add(facility)
+            for rule in rules:
+                magin_number = random.randint(0, 15)
+                if magin_number % 2 == 0:
+                    room.house_rules.add(rule)
 
         self.stdout.write(self.style.SUCCESS(f"{number} rooms created!"))
