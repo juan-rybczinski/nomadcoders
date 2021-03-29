@@ -9,7 +9,14 @@
         <h1>{{room.name}} / {{room.price}}</h1>
     {% endfor %} 
 
-    {% for page in pages %}
-        <a href="?page={{page}}">{{page}}</a>
-    {% endfor %}
+    {% if page is not 1 %}
+        <a href="?page={{page|add:-1}}">Previous</a>
+    {% endif %}
+
+    Page {{page}} of {{last_page}}
+
+    {% if not page == last_page %}
+        <a href="?page={{page|add:1}}">Next</a>
+    {% endif %}
+
 {% endblock content %}

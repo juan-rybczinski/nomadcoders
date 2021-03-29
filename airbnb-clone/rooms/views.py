@@ -16,6 +16,7 @@ def all_rooms(request):
         "rooms/home.html",
         context={
             "rooms": all_rooms,
-            "pages": range(1, last_page + 1),
+            "page": page,
+            "last_page": last_page,
         },
     )
