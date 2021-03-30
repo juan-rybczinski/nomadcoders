@@ -1,5 +1,6 @@
 from django.views.generic import ListView
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.http import Http404
 from . import models
 
 
@@ -24,5 +25,6 @@ def room_detail(request, pk):
                 "room": room,
             },
         )
+
     except models.Room.DoesNotExist:
-        return redirect("core:home")
+        raise Http404()
