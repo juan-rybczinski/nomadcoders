@@ -82,5 +82,9 @@ Search
         </ul>
     </div>
     <button>Search</button>
+    <h2>Results</h2>
+    {% for room in rooms %}
+    <h3>{{room.name}}</h3>
+    {% endfor %}
 </form>
 {% endblock content %}

@@ -20,7 +20,7 @@ class RoomDetail(DetailView):
 
 
 def search(request):
-    city = request.GET.get("city", "Anywhere")
+    city = request.GET.get("city", "")
     city = str.capitalize(city)
     country = request.GET.get("country", "KR")
     room_type = int(request.GET.get("room_type", 0))
@@ -59,8 +59,20 @@ def search(request):
         "facilities": facilities,
     }
 
+    filter_args = {}
+
+    if city != "":
+        filter_args["city__startswith"] = city
+
+    filter_args["country"] = country
+
+    if room_type != 0:
+        filter_args["room_type__pk"] = room_type
+
+    rooms = models.Room.objects.filter(**filter_args)
+
     return render(
         request,
         "rooms/room_search.html",
-        {**form, **choices},
+        {**form, **choices, "rooms": rooms},
     )
