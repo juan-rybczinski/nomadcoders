@@ -8,5 +8,9 @@ Log In
 {% endblock search-bar %}
 
 {% block content %}
-Hello!
+<form action="{% url 'users:login'  %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Login</button>
+</form>
 {% endblock content %}
