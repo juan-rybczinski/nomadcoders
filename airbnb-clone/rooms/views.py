@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView, View
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from . import models, forms
 
 
@@ -82,11 +83,22 @@ class SearchView(View):
                 for facility in facilities:
                     rooms = rooms.filter(facilities=facility)
 
+                qs = rooms.order_by("-created")
+                paginator = Paginator(qs, 10, orphans=5)
+                page = request.GET.get("page", 1)
+                rooms = paginator.get_page(page)
+
+                return render(
+                    request,
+                    "rooms/room_search.html",
+                    {"form": form, "rooms": rooms},
+                )
+
         else:
             form = forms.SearchForm()
 
         return render(
             request,
             "rooms/room_search.html",
-            {"form": form, "rooms": rooms},
+            {"form": form},
         )
