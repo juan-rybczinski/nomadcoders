@@ -70,15 +70,43 @@ def github_login(request):
     )
 
 
+class GithubException(Exception):
+
+    pass
+
+
 def github_callback(request):
-    client_id = os.environ.get("GH_ID")
-    client_secret = os.environ.get("GH_SECRET")
-    code = request.GET.get("code", None)
-    if code is not None:
-        response = requests.post(
-            f"https://github.com/login/oauth/access_token?client_id={client_id}&client_secret={client_secret}&code={code}",
-            headers={"Accept": "application/json"},
-        )
-        print(response.json())
-    else:
+    try:
+        client_id = os.environ.get("GH_ID")
+        client_secret = os.environ.get("GH_SECRET")
+        code = request.GET.get("code", None)
+        if code is not None:
+            response = requests.post(
+                f"https://github.com/login/oauth/access_token?client_id={client_id}&client_secret={client_secret}&code={code}",
+                headers={"Accept": "application/json"},
+            )
+            response_json = response.json()
+            error = response_json.get("error", None)
+            if error is not None:
+                raise GithubException()
+            else:
+                access_token = response_json.get("access_token")
+                profile_respone = requests.get(
+                    "https://api.github.com/user",
+                    headers={
+                        "Authorization": f"token {access_token}",
+                        "Accept": "application/json",
+                    },
+                )
+                profile_json = profile_respone.json()
+                username = profile_json.get("login", None)
+                if username is not None:
+                    name = profile_json.get("name")
+                    email = profile_json.get("email")
+                    bio = profile_json.get("bio")
+                    user = models.User.objects.get(username=email)
+        else:
+            raise GithubException()
+
+    except GithubException:
         return redirect("core:home")
