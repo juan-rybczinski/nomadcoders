@@ -137,6 +137,8 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+STATICFILES_DIRS = [Path("static")]
+
 AUTH_USER_MODEL = "users.User"
 
 MEDIA_ROOT = Path("uploads")
