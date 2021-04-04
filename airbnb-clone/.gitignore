@@ -234,5 +234,6 @@ Thumbs.db #thumbnail cache on Windows
 
 uploads/
 node_modules/
+static/css/styles.css
 
 # End of https://www.toptal.com/developers/gitignore/api/python,vscode,django
