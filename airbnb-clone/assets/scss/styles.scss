@@ -22,9 +22,13 @@ input {
 }
 
 form {
-  .input.has_error {
-    input {
-      @apply bg-red-200 border-gray-400 focus:border-gray-600;
+  .input {
+    @apply mb-2;
+
+    &.has_error {
+      input {
+        @apply bg-red-200 border-gray-400 focus:border-gray-600;
+      }
     }
   }
 }
