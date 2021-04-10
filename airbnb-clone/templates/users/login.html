@@ -12,10 +12,10 @@ Log In
 <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 border-gray-400">
     {% include "partials/social_login.html" %}
 
-    <form action="{% url 'users:login'  %}" method="POST" class="w-full">
+    <form action="{% url 'users:login'  %}" method="POST">
         {% csrf_token %}
-        <input type="email" placeholder="Email" class="login-input">
-        <input type="password" placeholder="Password" class="login-input">
+        {{form.email}}
+        {{form.password}}
         <button class="btn bg-red-500 text-white">Login</button>
     </form>
 

@@ -9,11 +9,22 @@ Sign Up
 
 {% block content %}
 
-{% include "partials/social_login.html" %}
+<div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 border-gray-400">
+    {% include "partials/social_login.html" %}
 
-<form action="{% url 'users:signup'  %}" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>Sign up</button>
-</form>
+    <form action="{% url 'users:signup'  %}" method="POST">
+        {% csrf_token %}
+        {{form.first_name}}
+        {{form.last_name}}
+        {{form.email}}
+        {{form.password}}
+        {{form.password1}}
+        <button class="btn bg-red-500 text-white">Sign up</button>
+    </form>
+
+    <div class="mt-5">
+        <span class="mr-2">Have an account?</span>
+        <a href="{% url 'users:login' %}" class="text-green-300 font-medium">Log in</a>
+    </div>
+</div>
 {% endblock content %}
