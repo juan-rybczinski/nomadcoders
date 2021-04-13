@@ -223,6 +223,17 @@ class UpdateProfileView(UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
+        form.fields["last_name"].widget.attrs = {"placeholder": "Last name"}
+        form.fields["bio"].widget.attrs = {"placeholder": "Bio"}
+        form.fields["birth_date"].widget.attrs = {"placeholder": "Birth date"}
+        return form
+
 
 class UpdatePasswordView(PasswordChangeView):
+    model = models.User
     template_name = "users/update-password.html"
+    form_class = forms.UpdatePasswordForm
+    success_url = reverse_lazy("core:home")
