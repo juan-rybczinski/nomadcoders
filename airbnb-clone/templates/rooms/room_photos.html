@@ -19,7 +19,7 @@
             </div>
             <div class="flex flex-col w-1/5">
                 <a href="#" class="btn-link mb-5 bg-green-500">Edit</a>
-                <a href="#" class="btn-link bg-red-600">Delete</a>
+                <a href="{% url 'rooms:delete-photo' room.pk photo.pk %}" class="btn-link bg-red-600">Delete</a>
             </div>
         </div>
     {% endfor %}
