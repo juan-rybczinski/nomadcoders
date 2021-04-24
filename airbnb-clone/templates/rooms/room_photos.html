@@ -11,6 +11,10 @@
 
 <div class="container mx-auto my-10 flex flex-col">
 
+    <div class="my-10 w-full">
+        <a href="{% url 'rooms:add-photo' room.pk %}" class="btn-link w-1/6 block">Upload Photo</a>
+    </div>
+
     {% for photo in room.photos.all %}
         <div class="mb-5 border p-6 border-gray-400 flex justify-between">
             <div class="flex items-start">
@@ -18,11 +22,15 @@
                 <span class="ml-5 text-xl">{{photo.caption}}</span>
             </div>
             <div class="flex flex-col w-1/5">
-                <a href="#" class="btn-link mb-5 bg-green-500">Edit</a>
+                <a href="{% url 'rooms:edit-photo' room.pk photo.pk %}" class="btn-link mb-5 bg-green-500">Edit</a>
                 <a href="{% url 'rooms:delete-photo' room.pk photo.pk %}" class="btn-link bg-red-600">Delete</a>
             </div>
         </div>
     {% endfor %}
+
+    <div class="flex justify-center mt-5">
+        <a href="{% url 'rooms:edit' room.pk %}" class="text-green-300 font-medium text-xl">Back to edit room</a>
+    </div>
 
 </div>
 

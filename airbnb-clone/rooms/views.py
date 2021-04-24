@@ -1,9 +1,16 @@
 from django.http import Http404
-from django.views.generic import ListView, DetailView, View, UpdateView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    View,
+    UpdateView,
+    CreateView,
+)
 from django.shortcuts import render, redirect, reverse
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from users import mixins as user_mixins
 from . import models, forms
 
@@ -162,3 +169,33 @@ def delete_photo(request, room_pk, photo_pk):
         return redirect(reverse("rooms:photos", kwargs={"pk": room_pk}))
     except models.Room.DoesNotExist:
         return redirect("core:home")
+
+
+class EditPhotoView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView):
+
+    model = models.Photo
+    template_name = "rooms/photo_edit.html"
+    pk_url_kwarg = "photo_pk"
+    success_message = "Photo upadated!"
+    fields = ("caption",)
+
+    def get_success_url(self):
+        room_pk = self.kwargs.get("room_pk")
+        return reverse("rooms:photos", kwargs={"pk": room_pk})
+
+
+class AddPhotoView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, CreateView):
+
+    model = models.Photo
+    template_name = "rooms/photo_create.html"
+    fields = ("caption", "file")
+    success_message = "Photo uploaded!"
+
+    def form_valid(self, form):
+        pk = self.kwargs.get("pk")
+        form.instance.room = models.Room.objects.get(pk=pk)
+        return super(AddPhotoView, self).form_valid(form)
+
+    def get_success_url(self):
+        room_pk = self.kwargs.get("pk")
+        return reverse("rooms:photos", kwargs={"pk": room_pk})
