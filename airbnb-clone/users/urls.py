@@ -17,4 +17,5 @@ urlpatterns = [
     path(
         "verify/<str:key>/", views.complete_verification, name="complete-verification"
     ),
+    path("switch-hosting/", views.switch_hosting, name="switch-hosting"),
 ]
