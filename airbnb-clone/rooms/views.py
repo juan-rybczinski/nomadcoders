@@ -199,3 +199,34 @@ class AddPhotoView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, CreateView
     def get_success_url(self):
         room_pk = self.kwargs.get("pk")
         return reverse("rooms:photos", kwargs={"pk": room_pk})
+
+
+class CreateRoomView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, CreateView):
+
+    model = models.Room
+    template_name = "rooms/room_create.html"
+    fields = (
+        "name",
+        "description",
+        "country",
+        "city",
+        "price",
+        "address",
+        "guests",
+        "beds",
+        "bedrooms",
+        "baths",
+        "check_in",
+        "check_out",
+        "instant_book",
+        "room_type",
+        "amenities",
+        "facilities",
+        "house_rules",
+    )
+    success_message = "Room created!"
+
+    def form_valid(self, form):
+        form.instance.host = self.request.user
+        super(CreateRoomView, self).form_valid(form)
+        return redirect(reverse("rooms:detail", kwargs={"pk": form.instance.pk}))
