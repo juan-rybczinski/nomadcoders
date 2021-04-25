@@ -5,7 +5,7 @@ from . import models
 @admin.register(models.BookedDay)
 class BookedDayAdmin(admin.ModelAdmin):
 
-    pass
+    list_display = ("day", "reservation")
 
 
 @admin.register(models.Reservation)
