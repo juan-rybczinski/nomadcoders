@@ -156,3 +156,7 @@ EMAIL_FROM = "noreply@sandboxc7e130f878004b8883e4f69ec3eced58.mailgun.org"
 # Auth
 
 LOGIN_URL = "/users/login/"
+
+# Locale
+
+LOCALE_PATHS = (Path("locale"),)
