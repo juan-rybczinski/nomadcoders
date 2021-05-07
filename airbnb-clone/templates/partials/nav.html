@@ -1,3 +1,4 @@
+{% load i18n %}
 <ul class="flex items-center text-sm font-medium h-full">
 {% if user.is_authenticated %}
     <li class="nav-link">
@@ -12,6 +13,7 @@
     {% if request.session.is_hosting %}
         <li class="nav-link"><a href="{% url 'rooms:create' %}">Create Room</a></li>
     {% endif %}    
+    <li class="nav-link"><a href="{% url 'lists:see-favs' %}">{% trans 'Favs' %}({{user.list.rooms.count}})</a></li>
     <li class="nav-link"><a href="{{user.get_absolute_url}}">Profile</a></li>
     <li class="nav-link"><a href="{% url 'users:logout' %}">Logout</a></li>
 {% else %}
