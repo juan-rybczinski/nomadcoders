@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.shortcuts import reverse
+from core import managers as core_managers
 
 
 # Create your models here.
@@ -69,6 +70,7 @@ class User(AbstractUser):
     login_method = models.CharField(
         max_length=10, choices=LOGIN_CHOICES, default=LOGIN_EMAIL
     )
+    objects = core_managers.CustomModelManager()
 
     def get_absolute_url(self):
         return reverse("users:profile", kwargs={"pk": self.pk})
